@@ -10,6 +10,7 @@ import ReactFlow, {
   useEdgesState,
   addEdge,
 } from "reactflow";
+import CustomEdge from "./CustomEdge"; // Import your custom edge component
 import "reactflow/dist/style.css";
 
 const initialNodes = [
@@ -31,11 +32,41 @@ const initialNodes = [
     position: { x: 200, y: 100 },
     data: { label: "Custom Node 3" },
   },
+
+  {
+    id: "4",
+    type: "custom",
+    position: { x: 500, y: 500 },
+    data: { label: "Custom Node 4" },
+  },
 ];
 
 const initialEdges = [
-  { id: "e1-2", source: "1", target: "2", style: { stroke: "#fd2d54" } },
-  { id: "e2-3", source: "2", target: "3", style: { stroke: "#fd2d54" } },
+  {
+    id: "e1-2",
+    source: "1",
+    target: "2",
+    style: { stroke: "#fd2d54" },
+    data: { sourceLabel: "Start of Edge 1", targetLabel: "End of Edge 1" },
+    type: "custom", // specify the type of edge
+  },
+  {
+    id: "e2-3",
+    source: "2",
+    target: "3",
+    style: { stroke: "#fd2d54" },
+    data: { sourceLabel: "Start of Edge 2", targetLabel: "End of Edge 2" },
+    type: "custom", // specify the type of edge
+  },
+
+  {
+    id: "e3-4",
+    source: "3",
+    target: "4",
+    style: { stroke: "#fd2d54" },
+    data: { sourceLabel: "Start of Edge 3", targetLabel: "End of Edge 3" },
+    type: "custom", // specify the type of edge
+  },
 ];
 
 const CustomNode = ({ data }) => {
@@ -74,6 +105,10 @@ export default function App() {
     custom: CustomNode,
   };
 
+  const edgeTypes = {
+    custom: CustomEdge,
+  };
+
   return (
     <div
       style={{
@@ -89,6 +124,7 @@ export default function App() {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
       >
         <Controls>
           <ControlButton
