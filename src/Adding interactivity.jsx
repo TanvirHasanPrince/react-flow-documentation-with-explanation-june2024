@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { ControlButton, Handle } from "reactflow";
+import { ControlButton, Handle, NodeToolbar } from "reactflow";
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -78,30 +78,48 @@ const initialEdges = [
 
 const CustomNode = ({ data }) => {
   return (
-    <div
-      style={{
-        padding: "10px",
-        border: "2px solid #fc466b",
-        borderRadius: "5px",
-        backgroundColor: "#eeaeca",
-        color: "#333",
-        boxShadow: "0 3px 6px rgba(0,0,0,0.1)",
-      }}
-    >
-      {data.label}
-      <Handle
-        type="source"
-        position="right"
-        style={{ background: "#22c1c3" }}
-      />
-      <Handle type="target" position="left" style={{ background: "#22c1c3" }} />
-      <Handle type="target" position="top" style={{ background: "#22c1c3" }} />
-      <Handle
-        type="target"
-        position="bottom"
-        style={{ background: "#22c1c3" }}
-      />
-    </div>
+    <>
+      <NodeToolbar
+        isVisible={data.toolbarVisible}
+        position={data.toolbarPosition}
+      >
+        <button>delete</button>
+        <button>copy</button>
+        <button>expand</button>
+      </NodeToolbar>
+      <div
+        style={{
+          padding: "10px",
+          border: "2px solid #fc466b",
+          borderRadius: "5px",
+          backgroundColor: "#eeaeca",
+          color: "#333",
+          boxShadow: "0 3px 6px rgba(0,0,0,0.1)",
+        }}
+      >
+        {data.label}
+        <Handle
+          type="source"
+          position="right"
+          style={{ background: "#22c1c3" }}
+        />
+        <Handle
+          type="target"
+          position="left"
+          style={{ background: "#22c1c3" }}
+        />
+        <Handle
+          type="target"
+          position="top"
+          style={{ background: "#22c1c3" }}
+        />
+        <Handle
+          type="target"
+          position="bottom"
+          style={{ background: "#22c1c3" }}
+        />
+      </div>
+    </>
   );
 };
 
