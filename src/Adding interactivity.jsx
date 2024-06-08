@@ -18,7 +18,7 @@ const initialNodes = [
     id: "1",
     type: "custom",
     position: { x: 0, y: 0 },
-    data: { label: "Custom Node " },
+    data: { label: "Custom Node 1" },
   },
   {
     id: "2",
@@ -32,7 +32,6 @@ const initialNodes = [
     position: { x: 200, y: 100 },
     data: { label: "Custom Node 3" },
   },
-
   {
     id: "4",
     type: "custom",
@@ -40,6 +39,15 @@ const initialNodes = [
     data: { label: "Custom Node 4" },
   },
 ];
+
+function nodeColor(node) {
+  switch (node.type) {
+    case "custom": // Handle custom type
+      return "#6ede87";
+    default:
+      return "#ff0072";
+  }
+}
 
 const initialEdges = [
   {
@@ -58,7 +66,6 @@ const initialEdges = [
     data: { sourceLabel: "Start of Edge 2", targetLabel: "End of Edge 2" },
     type: "custom", // specify the type of edge
   },
-
   {
     id: "e3-4",
     source: "3",
@@ -88,9 +95,7 @@ const CustomNode = ({ data }) => {
         style={{ background: "#22c1c3" }}
       />
       <Handle type="target" position="left" style={{ background: "#22c1c3" }} />
-
       <Handle type="target" position="top" style={{ background: "#22c1c3" }} />
-
       <Handle
         type="target"
         position="bottom"
@@ -141,7 +146,11 @@ export default function App() {
             <PlusIcon />
           </ControlButton>
         </Controls>
-        <MiniMap />
+        <MiniMap
+          pannable
+          zoomable
+          nodeColor={nodeColor} // Use nodeColor function
+        />
         <Background
           id="1"
           gap={10}
