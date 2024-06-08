@@ -18,7 +18,7 @@ const initialNodes = [
     id: "1",
     type: "custom",
     position: { x: 0, y: 0 },
-    data: { label: "Custom Node 1" },
+    data: { label: "Custom Node " },
   },
   {
     id: "2",
@@ -88,6 +88,14 @@ const CustomNode = ({ data }) => {
         style={{ background: "#22c1c3" }}
       />
       <Handle type="target" position="left" style={{ background: "#22c1c3" }} />
+
+      <Handle type="target" position="top" style={{ background: "#22c1c3" }} />
+
+      <Handle
+        type="target"
+        position="bottom"
+        style={{ background: "#22c1c3" }}
+      />
     </div>
   );
 };
