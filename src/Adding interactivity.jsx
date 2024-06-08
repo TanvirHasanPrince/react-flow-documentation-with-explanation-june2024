@@ -1,5 +1,6 @@
 import { useCallback } from "react";
-import { Handle } from "reactflow";
+import { PlusIcon } from "@radix-ui/react-icons";
+import { ControlButton, Handle } from "reactflow";
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -89,7 +90,13 @@ export default function App() {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
       >
-        <Controls />
+        <Controls>
+          <ControlButton
+            onClick={() => alert("Something magical just happened. ✨")}
+          >
+            <PlusIcon />
+          </ControlButton>
+        </Controls>
         <MiniMap />
         <Background
           id="1"
@@ -100,7 +107,7 @@ export default function App() {
         <Background
           id="2"
           gap={100}
-          color="#ccc"
+          color="#22c1c3"
           variant={BackgroundVariant.Lines}
         />
       </ReactFlow>
